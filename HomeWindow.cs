@@ -26,7 +26,7 @@ namespace AatmanProject_.net_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DC.openChildForm(new MenuItem(btn_bill, this, DC.oidno), this.btn_bill);
+            DC.openChildForm(new MenuItem(p_fm, this, DC.oidno), this.p_fm);
             i = 1;
         }
 
@@ -72,6 +72,16 @@ namespace AatmanProject_.net_
         private void button6_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DC.oidno = Convert.ToInt32(comboBox1.Text);
+            DC.openChildForm(new MenuItem(p_fm, this, DC.oidno), this.p_fm);
+            if (DC.dg.Rows.Count > 0)
+            {
+                DC.dg.Rows.Clear();
+            }
         }
     }
 }
