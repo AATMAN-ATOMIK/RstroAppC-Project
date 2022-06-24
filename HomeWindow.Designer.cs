@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -37,7 +38,17 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.grid = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.p_fm = new System.Windows.Forms.Panel();
+            this.btn_bill = new System.Windows.Forms.Panel();
+            this.btn_order = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.lb_am = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Label_Amount = new System.Windows.Forms.Label();
+            this.Lable_Gst = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -75,7 +86,6 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "OverView";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -144,6 +154,14 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(40)))), ((int)(((byte)(91)))));
+            this.panel2.Controls.Add(this.Lable_Gst);
+            this.panel2.Controls.Add(this.Label_Amount);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lb_am);
+            this.panel2.Controls.Add(this.button8);
+            this.panel2.Controls.Add(this.button7);
+            this.panel2.Controls.Add(this.button6);
+            this.panel2.Controls.Add(this.btn_order);
             this.panel2.Controls.Add(this.grid);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -173,23 +191,105 @@
             this.panel3.Size = new System.Drawing.Size(217, 128);
             this.panel3.TabIndex = 1;
             // 
-            // p_fm
+            // btn_bill
             // 
-            this.p_fm.BackColor = System.Drawing.Color.Lavender;
-            this.p_fm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_fm.Location = new System.Drawing.Point(172, 0);
-            this.p_fm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.p_fm.Name = "p_fm";
-            this.p_fm.Size = new System.Drawing.Size(963, 662);
-            this.p_fm.TabIndex = 2;
-            this.p_fm.Paint += new System.Windows.Forms.PaintEventHandler(this.p_fm_Paint);
+            this.btn_bill.BackColor = System.Drawing.Color.Lavender;
+            this.btn_bill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_bill.Location = new System.Drawing.Point(172, 0);
+            this.btn_bill.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btn_bill.Name = "btn_bill";
+            this.btn_bill.Size = new System.Drawing.Size(963, 662);
+            this.btn_bill.TabIndex = 2;
+            // 
+            // btn_order
+            // 
+            this.btn_order.Location = new System.Drawing.Point(29, 517);
+            this.btn_order.Name = "btn_order";
+            this.btn_order.Size = new System.Drawing.Size(157, 31);
+            this.btn_order.TabIndex = 3;
+            this.btn_order.Text = "Order";
+            this.btn_order.UseVisualStyleBackColor = true;
+            this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(29, 554);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(157, 31);
+            this.button6.TabIndex = 4;
+            this.button6.Text = "Generate Bill";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(29, 591);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(157, 31);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(29, 628);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(157, 31);
+            this.button8.TabIndex = 6;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // lb_am
+            // 
+            this.lb_am.AutoSize = true;
+            this.lb_am.Location = new System.Drawing.Point(5, 396);
+            this.lb_am.Name = "lb_am";
+            this.lb_am.Size = new System.Drawing.Size(118, 18);
+            this.lb_am.TabIndex = 7;
+            this.lb_am.Text = "Total Amount :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 436);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 18);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Total GST     :";
+            // 
+            // Label_Amount
+            // 
+            this.Label_Amount.AutoSize = true;
+            this.Label_Amount.Location = new System.Drawing.Point(129, 396);
+            this.Label_Amount.Name = "Label_Amount";
+            this.Label_Amount.Size = new System.Drawing.Size(0, 18);
+            this.Label_Amount.TabIndex = 9;
+            // 
+            // Lable_Gst
+            // 
+            this.Lable_Gst.AutoSize = true;
+            this.Lable_Gst.Location = new System.Drawing.Point(129, 436);
+            this.Lable_Gst.Name = "Lable_Gst";
+            this.Lable_Gst.Size = new System.Drawing.Size(0, 18);
+            this.Lable_Gst.TabIndex = 10;
             // 
             // HomeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 662);
-            this.Controls.Add(this.p_fm);
+            this.Controls.Add(this.btn_bill);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -201,6 +301,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
@@ -210,7 +311,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel p_fm;
+        private System.Windows.Forms.Panel btn_bill;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
@@ -218,5 +319,15 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btn_order;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lb_am;
+        private System.Windows.Forms.Label Label_Amount;
+        private System.Windows.Forms.Label Lable_Gst;
     }
 }
