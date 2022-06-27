@@ -70,6 +70,12 @@ namespace AatmanProject_.net_
                 }
             }
         }
-
+        public void l_Click(object sender, System.EventArgs e)
+        {
+            string nm = sender.ToString();
+            string nnm = nm.Substring(34);
+            DC.cat = nnm;
+            DC.openChildForm(new FoodItemPage(fn, main, oid), main);
+        }
     }
 }
