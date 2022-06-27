@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -36,21 +35,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Lable_Gst = new System.Windows.Forms.Label();
-            this.Label_Amount = new System.Windows.Forms.Label();
+            this.Label_Gst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lb_am = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btn_delivery = new System.Windows.Forms.Button();
+            this.btn_takeaway = new System.Windows.Forms.Button();
             this.btn_bill = new System.Windows.Forms.Button();
             this.btn_order = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
+            this.Tno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.p_fm = new System.Windows.Forms.Panel();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.p_fm = new System.Windows.Forms.Panel();
+            this.Label_Amount = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -89,6 +90,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "OverView";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -157,91 +159,75 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(40)))), ((int)(((byte)(91)))));
-            this.panel2.Controls.Add(this.Lable_Gst);
             this.panel2.Controls.Add(this.Label_Amount);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.Label_Gst);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.lb_am);
-            this.panel2.Controls.Add(this.button8);
-            this.panel2.Controls.Add(this.button7);
+            this.panel2.Controls.Add(this.btn_delivery);
+            this.panel2.Controls.Add(this.btn_takeaway);
             this.panel2.Controls.Add(this.btn_bill);
             this.panel2.Controls.Add(this.btn_order);
             this.panel2.Controls.Add(this.grid);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(91)))), ((int)(((byte)(223)))));
-            this.panel2.Location = new System.Drawing.Point(1135, 0);
+            this.panel2.Location = new System.Drawing.Point(1090, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(217, 662);
+            this.panel2.Size = new System.Drawing.Size(262, 662);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // Lable_Gst
+            // Label_Gst
             // 
-            this.Lable_Gst.AutoSize = true;
-            this.Lable_Gst.Location = new System.Drawing.Point(129, 436);
-            this.Lable_Gst.Name = "Lable_Gst";
-            this.Lable_Gst.Size = new System.Drawing.Size(0, 18);
-            this.Lable_Gst.TabIndex = 10;
-            // 
-            // Label_Amount
-            // 
-            this.Label_Amount.AutoSize = true;
-            this.Label_Amount.Location = new System.Drawing.Point(129, 396);
-            this.Label_Amount.Name = "Label_Amount";
-            this.Label_Amount.Size = new System.Drawing.Size(0, 18);
-            this.Label_Amount.TabIndex = 9;
+            this.Label_Gst.AutoSize = true;
+            this.Label_Gst.Location = new System.Drawing.Point(109, 385);
+            this.Label_Gst.Name = "Label_Gst";
+            this.Label_Gst.Size = new System.Drawing.Size(0, 18);
+            this.Label_Gst.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 436);
+            this.label2.Location = new System.Drawing.Point(3, 385);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 18);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Total GST     :";
+            this.label2.Size = new System.Drawing.Size(95, 18);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Total GST :";
             // 
-            // lb_am
+            // btn_delivery
             // 
-            this.lb_am.AutoSize = true;
-            this.lb_am.Location = new System.Drawing.Point(5, 396);
-            this.lb_am.Name = "lb_am";
-            this.lb_am.Size = new System.Drawing.Size(118, 18);
-            this.lb_am.TabIndex = 7;
-            this.lb_am.Text = "Total Amount :";
+            this.btn_delivery.Enabled = false;
+            this.btn_delivery.Location = new System.Drawing.Point(58, 619);
+            this.btn_delivery.Name = "btn_delivery";
+            this.btn_delivery.Size = new System.Drawing.Size(162, 31);
+            this.btn_delivery.TabIndex = 6;
+            this.btn_delivery.Text = "Delivery";
+            this.btn_delivery.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btn_takeaway
             // 
-            this.button8.Location = new System.Drawing.Point(29, 628);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(157, 31);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(29, 591);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(157, 31);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btn_takeaway.Location = new System.Drawing.Point(58, 582);
+            this.btn_takeaway.Name = "btn_takeaway";
+            this.btn_takeaway.Size = new System.Drawing.Size(162, 31);
+            this.btn_takeaway.TabIndex = 5;
+            this.btn_takeaway.Text = "TakeAway";
+            this.btn_takeaway.UseVisualStyleBackColor = true;
             // 
             // btn_bill
             // 
-            this.btn_bill.Location = new System.Drawing.Point(29, 554);
+            this.btn_bill.Location = new System.Drawing.Point(58, 545);
             this.btn_bill.Name = "btn_bill";
-            this.btn_bill.Size = new System.Drawing.Size(157, 31);
+            this.btn_bill.Size = new System.Drawing.Size(162, 31);
             this.btn_bill.TabIndex = 4;
-            this.btn_bill.Text = "Generate Bill";
+            this.btn_bill.Text = "Generate  Bill";
             this.btn_bill.UseVisualStyleBackColor = true;
-            this.btn_bill.Click += new System.EventHandler(this.button6_Click);
             // 
             // btn_order
             // 
-            this.btn_order.Location = new System.Drawing.Point(29, 517);
+            this.btn_order.Location = new System.Drawing.Point(58, 508);
             this.btn_order.Name = "btn_order";
-            this.btn_order.Size = new System.Drawing.Size(157, 31);
+            this.btn_order.Size = new System.Drawing.Size(162, 31);
             this.btn_order.TabIndex = 3;
             this.btn_order.Text = "Order";
             this.btn_order.UseVisualStyleBackColor = true;
@@ -249,48 +235,59 @@
             // 
             // grid
             // 
+            this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.grid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Tno,
+            this.Item,
+            this.Qty,
+            this.Price});
             this.grid.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grid.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.grid.Location = new System.Drawing.Point(0, 128);
             this.grid.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(217, 231);
+            this.grid.RowHeadersVisible = false;
+            this.grid.Size = new System.Drawing.Size(262, 231);
             this.grid.TabIndex = 2;
+            // 
+            // Tno
+            // 
+            this.Tno.HeaderText = "Tno";
+            this.Tno.Name = "Tno";
+            // 
+            // Item
+            // 
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            // 
+            // Qty
+            // 
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(217, 128);
+            this.panel3.Size = new System.Drawing.Size(262, 128);
             this.panel3.TabIndex = 1;
-            // 
-            // p_fm
-            // 
-            this.p_fm.BackColor = System.Drawing.Color.Lavender;
-            this.p_fm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_fm.Location = new System.Drawing.Point(172, 0);
-            this.p_fm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.p_fm.Name = "p_fm";
-            this.p_fm.Size = new System.Drawing.Size(963, 662);
-            this.p_fm.TabIndex = 2;
-            // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Document = this.printDocument1;
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "1",
@@ -298,21 +295,49 @@
             "3",
             "4",
             "5\t\t\t"});
-            this.comboBox1.Location = new System.Drawing.Point(49, 63);
+            this.comboBox1.Location = new System.Drawing.Point(160, 57);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 26);
-            this.comboBox1.TabIndex = 0;
+            this.comboBox1.Size = new System.Drawing.Size(90, 26);
+            this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 40);
+            this.label1.Location = new System.Drawing.Point(8, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Select Order Table No.";
+            this.label1.Size = new System.Drawing.Size(155, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Choose Table No. :";
+            // 
+            // p_fm
+            // 
+            this.p_fm.AutoScroll = true;
+            this.p_fm.BackColor = System.Drawing.Color.Lavender;
+            this.p_fm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p_fm.Location = new System.Drawing.Point(172, 0);
+            this.p_fm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.p_fm.Name = "p_fm";
+            this.p_fm.Size = new System.Drawing.Size(918, 662);
+            this.p_fm.TabIndex = 2;
+            this.p_fm.Paint += new System.Windows.Forms.PaintEventHandler(this.p_fm_Paint);
+            // 
+            // Label_Amount
+            // 
+            this.Label_Amount.AutoSize = true;
+            this.Label_Amount.Location = new System.Drawing.Point(133, 423);
+            this.Label_Amount.Name = "Label_Amount";
+            this.Label_Amount.Size = new System.Drawing.Size(0, 18);
+            this.Label_Amount.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 18);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Total Amount :";
             // 
             // HomeWindow
             // 
@@ -351,17 +376,19 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btn_delivery;
+        private System.Windows.Forms.Button btn_takeaway;
         private System.Windows.Forms.Button btn_bill;
         private System.Windows.Forms.Button btn_order;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lb_am;
-        private System.Windows.Forms.Label Label_Amount;
-        private System.Windows.Forms.Label Lable_Gst;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Label_Gst;
+        private System.Windows.Forms.Label Label_Amount;
+        private System.Windows.Forms.Label label4;
     }
 }

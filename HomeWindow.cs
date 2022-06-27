@@ -30,6 +30,16 @@ namespace AatmanProject_.net_
             i = 1;
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void p_fm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void HomeWindow_Load(object sender, EventArgs e)
         {
             DC.dg = this.grid;  
@@ -42,8 +52,6 @@ namespace AatmanProject_.net_
             DataTable dtd = new DataTable();
             dad.Fill(dtd);
 
-
-
             foreach (DataGridViewRow row in DC.dg.Rows)
             {
                 string it = row.Cells["Item"].Value.ToString();
@@ -54,24 +62,6 @@ namespace AatmanProject_.net_
                 DataTable dti = new DataTable();
                 dai.Fill(dti);
             }
-
-            int height = DC.dg.Height;
-            DC.dg.Height = DC.dg.RowCount * DC.dg.RowTemplate.Height + 200;
-            bitmap = new Bitmap(DC.dg.Width, DC.dg.Height);
-            DC.dg.DrawToBitmap(bitmap, new Rectangle(0, 0, DC.dg.Width, DC.dg.Height));
-            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
-            printPreviewDialog1.Document.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("prnm", DC.dg.Width, DC.dg.Height);
-            printPreviewDialog1.ShowDialog();
-            DC.dg.Height = height;
-
-            DC.dg.Rows.Clear();
-            Label_Amount.Text = "0";
-            Lable_Gst.Text = "0";
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +72,14 @@ namespace AatmanProject_.net_
             {
                 DC.dg.Rows.Clear();
             }
+            DC.t_no = Convert.ToInt32(comboBox1.Text);
+            DC.ot_no = Convert.ToInt32(comboBox1.Text);
+            int am = 0, gst;
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
