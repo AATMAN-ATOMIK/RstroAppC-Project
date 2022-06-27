@@ -31,6 +31,45 @@ namespace AatmanProject_.net_
             fn = f;
             oid = oi;
         }
-        
+        private void MenuItem_Load(object sender, EventArgs e)
+        {
+            string sel = "select * from categories";
+            SqlDataAdapter das = new SqlDataAdapter(sel, DC.con);
+            DataTable dts = new DataTable();
+            das.Fill(dts);
+
+            totcat = dts.Rows.Count;
+            for (int i = 0; i < totcat; i++)
+            {
+                PictureBox p = new PictureBox();
+                this.Controls.Add(p);
+                p.Name = "P_Item" + i.ToString();
+                p.Size = new Size(200, 150);
+                p.Location = new System.Drawing.Point(pxloc, pyloc);
+                string i_path = Path.Combine(dts.Rows[i]["c_img"].ToString());
+                p.Image = Image.FromFile(i_path);
+                p.SizeMode = PictureBoxSizeMode.Zoom;
+
+
+                Label l = new Label();
+                this.Controls.Add(l);
+                l.Name = dts.Rows[i]["c_name"].ToString();
+                l.Size = new Size(200, 50);
+                l.Location = new System.Drawing.Point(pxloc + 30, pyloc + 180);
+                l.Text = dts.Rows[i]["c_name"].ToString();
+                l.Cursor = Cursors.Hand;
+                l.Click += new System.EventHandler(this.l_Click);
+
+                pxloc += 230;
+
+
+                if (p.Location.X > 600)
+                {
+                    pyloc += 250;
+                    pxloc = 30;
+                }
+            }
+        }
+
     }
 }
