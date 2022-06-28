@@ -113,7 +113,29 @@ namespace AatmanProject_.net_
 
         private void btn_bill_Click(object sender, EventArgs e)
         {
-            
+            int height = DC.dg.Height;
+            DC.dg.Height = DC.dg.RowCount * DC.dg.RowTemplate.Height + 200;
+            bitmap = new Bitmap(DC.dg.Width, DC.dg.Height);
+            DC.dg.DrawToBitmap(bitmap, new Rectangle(0, 0, DC.dg.Width, DC.dg.Height));
+            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.Document.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("prnm", DC.dg.Width, DC.dg.Height);
+            printPreviewDialog1.ShowDialog();
+            DC.dg.Height = height;
+
+            string del = "delete from order_data where tno = '" + DC.ot_no + "'";
+            SqlDataAdapter dad = new SqlDataAdapter(del, DC.con);
+            DataTable dtd = new DataTable();
+            dad.Fill(dtd);
+
+            string ot = "table";
+            string ins = "insert into total_earnings (tno,date,amount,o_type) values ('" + DC.ot_no + "','" + dt + "','" + DC.totalbill + "','" + ot + "')";
+            SqlDataAdapter dai = new SqlDataAdapter(ins, DC.con);
+            DataTable dti = new DataTable();
+            dai.Fill(dti);
+
+            DC.dg.Rows.Clear();
+            Label_Amount.Text = "0";
+            Lable_Gst.Text = "0";
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
