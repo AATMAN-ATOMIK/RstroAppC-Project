@@ -18,7 +18,7 @@ namespace AatmanProject_.net_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tnum.Text != "" && tnum.Text != "")
+            if (tnum.Text != "" || tnum.Text != "")
             {
                 DC.t_nm = tnum.Text;
                 DC.t_num = Convert.ToInt64(tnum.Text);
