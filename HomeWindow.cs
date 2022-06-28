@@ -145,5 +145,59 @@ namespace AatmanProject_.net_
             e.Graphics.DrawImage(bitmap, 0, 60);
             e.Graphics.DrawString(" Total GST : " + DC.totalgst.ToString() + " \n " + "Total Bill : " + DC.totalbill.ToString(), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold), Brushes.Black, 150, printPreviewDialog1.Document.DefaultPageSettings.PaperSize.Height - 40);
         }
+
+        private void btn_takeaway_Click(object sender, EventArgs e)
+        {
+            if (i == 0)
+            {
+                DC.openChildForm(new MenuItem(p_fm, this, DC.oidno), this.p_fm);
+                i = 1;
+            }
+            else if (i == 1)
+            {
+                takeawaydataget t = new takeawaydataget();
+                t.ShowDialog();
+
+                string sel = "select * from takeaway_data";
+                SqlDataAdapter das = new SqlDataAdapter(sel, DC.con);
+                DataTable dts = new DataTable();
+                das.Fill(dts);
+
+                if (dts.Rows.Count > 0)
+                {
+                    takeaway_id = Convert.ToInt32(dts.Rows[dts.Rows.Count - 1]["id"].ToString());
+                }
+                else
+                {
+                    takeaway_id = 1;
+                }
+                int height = DC.dg.Height;
+                DC.dg.Height = DC.dg.RowCount * DC.dg.RowTemplate.Height + 200;
+                bitmap = new Bitmap(DC.dg.Width, DC.dg.Height);
+                DC.dg.DrawToBitmap(bitmap, new Rectangle(0, 0, DC.dg.Width, DC.dg.Height));
+                printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+                printPreviewDialog1.Document.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("prnm", DC.dg.Width, DC.dg.Height);
+                printDocument1.PrinterSettings.Copies = 2;
+                printPreviewDialog1.ShowDialog();
+                DC.dg.Height = height;
+
+                string ins1 = "insert into takeaway_data (guest_nm,guest_num,price) values ('" + DC.t_nm + "','" + DC.t_num + "','" + DC.totalbill + "')";
+                SqlDataAdapter dai1 = new SqlDataAdapter(ins1, DC.con);
+                DataTable dti1 = new DataTable();
+                dai1.Fill(dti1);
+
+                string ot = "takeaway";
+                string ins2 = "insert into total_earnings (tno,date,amount,o_type) values ('" + DC.ot_no + "','" + dt + "','" + DC.totalbill + "','" + ot + "')";
+                SqlDataAdapter dai = new SqlDataAdapter(ins2, DC.con);
+                DataTable dti = new DataTable();
+                dai.Fill(dti);
+
+                DC.dg.Rows.Clear();
+                Label_Amount.Text = "0";
+                Lable_Gst.Text = "0";
+                DC.totalbill = 0;
+                DC.totalgst = 0;
+            }
+        }
     }
 }

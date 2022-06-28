@@ -233,6 +233,7 @@
             this.btn_takeaway.TabIndex = 5;
             this.btn_takeaway.Text = "TakeAway";
             this.btn_takeaway.UseVisualStyleBackColor = true;
+            this.btn_takeaway.Click += new System.EventHandler(this.btn_takeaway_Click);
             // 
             // btn_bill
             // 
