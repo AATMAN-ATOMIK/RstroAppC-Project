@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -35,7 +36,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Label_Gst = new System.Windows.Forms.Label();
+            this.Label_Amount = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Lable_Gst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_delivery = new System.Windows.Forms.Button();
             this.btn_takeaway = new System.Windows.Forms.Button();
@@ -50,8 +53,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.p_fm = new System.Windows.Forms.Panel();
-            this.Label_Amount = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -161,7 +164,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(40)))), ((int)(((byte)(91)))));
             this.panel2.Controls.Add(this.Label_Amount);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.Label_Gst);
+            this.panel2.Controls.Add(this.Lable_Gst);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btn_delivery);
             this.panel2.Controls.Add(this.btn_takeaway);
@@ -178,13 +181,30 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // Label_Gst
+            // Label_Amount
             // 
-            this.Label_Gst.AutoSize = true;
-            this.Label_Gst.Location = new System.Drawing.Point(109, 385);
-            this.Label_Gst.Name = "Label_Gst";
-            this.Label_Gst.Size = new System.Drawing.Size(0, 18);
-            this.Label_Gst.TabIndex = 8;
+            this.Label_Amount.AutoSize = true;
+            this.Label_Amount.Location = new System.Drawing.Point(133, 423);
+            this.Label_Amount.Name = "Label_Amount";
+            this.Label_Amount.Size = new System.Drawing.Size(0, 18);
+            this.Label_Amount.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 18);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Total Amount :";
+            // 
+            // Lable_Gst
+            // 
+            this.Lable_Gst.AutoSize = true;
+            this.Lable_Gst.Location = new System.Drawing.Point(109, 385);
+            this.Lable_Gst.Name = "Lable_Gst";
+            this.Lable_Gst.Size = new System.Drawing.Size(0, 18);
+            this.Lable_Gst.TabIndex = 8;
             // 
             // label2
             // 
@@ -222,6 +242,7 @@
             this.btn_bill.TabIndex = 4;
             this.btn_bill.Text = "Generate  Bill";
             this.btn_bill.UseVisualStyleBackColor = true;
+            this.btn_bill.Click += new System.EventHandler(this.btn_bill_Click);
             // 
             // btn_order
             // 
@@ -235,6 +256,11 @@
             // 
             // grid
             // 
+            this.grid.AllowUserToAddRows = false;
+            this.grid.AllowUserToDeleteRows = false;
+            this.grid.AllowUserToOrderColumns = true;
+            this.grid.AllowUserToResizeColumns = false;
+            this.grid.AllowUserToResizeRows = false;
             this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -322,22 +348,20 @@
             this.p_fm.TabIndex = 2;
             this.p_fm.Paint += new System.Windows.Forms.PaintEventHandler(this.p_fm_Paint);
             // 
-            // Label_Amount
+            // printPreviewDialog1
             // 
-            this.Label_Amount.AutoSize = true;
-            this.Label_Amount.Location = new System.Drawing.Point(133, 423);
-            this.Label_Amount.Name = "Label_Amount";
-            this.Label_Amount.Size = new System.Drawing.Size(0, 18);
-            this.Label_Amount.TabIndex = 10;
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
-            // label4
+            // printDocument1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 423);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 18);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Total Amount :";
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // HomeWindow
             // 
@@ -387,8 +411,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Label_Gst;
-        private System.Windows.Forms.Label Label_Amount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        public System.Windows.Forms.Label Lable_Gst;
+        public System.Windows.Forms.Label Label_Amount;
     }
 }
